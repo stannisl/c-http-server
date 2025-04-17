@@ -1,0 +1,13 @@
+<map id="libs/mongoose/mongoose.h" name="libs/mongoose/mongoose.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="217,5,418,31"/>
+<area shape="rect" id="Node000002" href="$server_8h.html" title=" " alt="" coords="128,79,299,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="291,41,232,81,229,76,288,36"/>
+<area shape="rect" id="Node000006" href="$mongoose_8c.html" title=" " alt="" coords="323,79,523,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="347,36,407,76,404,81,344,41"/>
+<area shape="rect" id="Node000003" href="$config_8c.html" title=" " alt="" coords="5,152,144,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="180,113,99,154,96,149,178,108"/>
+<area shape="rect" id="Node000004" href="$main_8c.html" title=" " alt="" coords="169,152,258,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="216,118,216,152,211,152,211,118"/>
+<area shape="rect" id="Node000005" href="$server_8c.html" title=" " alt="" coords="283,152,424,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="249,108,332,149,329,154,247,113"/>
+</map>

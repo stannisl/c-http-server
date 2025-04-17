@@ -1,0 +1,9 @@
+<map id="include/server/server.h" name="include/server/server.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="128,5,299,31"/>
+<area shape="rect" id="Node000002" href="$config_8c.html" title=" " alt="" coords="5,79,144,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,39,99,81,96,76,178,34"/>
+<area shape="rect" id="Node000003" href="$main_8c.html" title=" " alt="" coords="169,79,258,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="216,44,216,79,211,79,211,44"/>
+<area shape="rect" id="Node000004" href="$server_8c.html" title=" " alt="" coords="283,79,424,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="249,34,332,76,329,81,247,39"/>
+</map>

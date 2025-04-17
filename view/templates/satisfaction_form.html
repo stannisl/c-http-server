@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF8" />
+        <title>Оценка удовлетворенности</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <form>
+            <h2>Проверка шкалы удовлетворенности</h2>
+            <div id="form-help" class="visually-hidden">
+                Шкала от 0 до 10, где 0 - полностью не удовлетворен(-а), а 10
+                полностью удовлетворен(-а)
+            </div>
+            <div class="question">
+                <label for="satisfaction1">
+                    <h3>Насколько вы удовлетворены?</h3>
+                </label>
+                <input
+                    type="range"
+                    id="sat-range1"
+                    name="sat-range1"
+                    min="0"
+                    max="10"
+                    value="5"
+                />
+            </div>
+
+            <div class="question">
+                <label for="satisfaction2">Насколько вы удовлетворены? </label>
+                <input
+                    type="range"
+                    id="sat-range2"
+                    name="sat-range2"
+                    min="0"
+                    max="10"
+                    value="5"
+                />
+            </div>
+
+            <div class="question">
+                <label for="satisfaction3">
+                    <h3>Насколько вы удовлетворены?</h3>
+                </label>
+                <input
+                    type="range"
+                    id="sat-range3"
+                    name="sat-range3"
+                    min="0"
+                    max="10"
+                    value="5"
+                />
+            </div>
+
+            <div class="question">
+                <label for="satisfaction4">
+                    <h3>Насколько вы удовлетворены?</h3>
+                </label>
+                <input
+                    type="range"
+                    id="sat-range4"
+                    name="sat-range4"
+                    min="0"
+                    max="10"
+                    value="5"
+                />
+            </div>
+
+            <div class="submit-section">
+                <button type="submit">Отправить результаты</button>
+            </div>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,6 @@
+INPUT                  = src include
+RECURSIVE             = YES
+EXTRACT_ALL           = YES
+EXTRACT_STATIC        = YES
+GENERATE_LATEX        = NO
+USE_MDFILE_AS_MAINPAGE = README.md
