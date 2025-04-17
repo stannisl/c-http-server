@@ -1,9 +1,9 @@
 #include "../../include/config/config.h"
-#include "../../include/server/server.h"
-#include "../../libs/inih/ini.h"
-#include "../../libs/logger/log.h"
+
 #include <stdlib.h>
 #include <string.h>
+
+#include "../../include/server/server.h"
 
 static int handler(void *user, const char *section, const char *name, const char *value)
 {

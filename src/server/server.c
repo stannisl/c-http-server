@@ -1,7 +1,4 @@
 #include "../../include/server/server.h"
-#include "../../include/IO/input.h"
-#include "../../include/constants.h"
-#include "../../include/logger/logger.h"
 
 void server_init(Server *srv, const serverConfig_t *config)
 {
@@ -25,8 +22,6 @@ static void event_handler(struct mg_connection *c, int ev, void *ev_data)
     if (ev == MG_EV_HTTP_MSG)
     {
         struct mg_http_message *hm = (struct mg_http_message *)ev_data;
-
-        logRequest(hm);
 
         for (size_t i = 0; i < srv->handlers_count; i++)
         {

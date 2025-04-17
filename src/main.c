@@ -18,6 +18,7 @@ int main(void)
     {
         server_init(&server, &config);
 
+        server_register_handler(&server, handleLoggingRequest);
         server_register_handler(&server, handleStaticResource);
         // server_register_handler(&server, handleFormSubmission);
         server_register_handler(&server, handleNotFound);
