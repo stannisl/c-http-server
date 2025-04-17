@@ -2,9 +2,9 @@
 
 void init_logger()
 {
-#ifndef DEBUG
+#ifdef DEBUG
     log_set_level(LOG_TRACE);
 #else
-    log_set_level(LOG_ERROR);
+    log_set_level(LOG_WARN);
 #endif
 }

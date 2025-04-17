@@ -1,20 +1,30 @@
 #include "../include/config/config.h"
-#include "../include/server/server.h"
 #include "../include/logger/logger.h"
+#include "../include/server/handlers.h"
+#include "../include/server/server.h"
 
 int main(void)
 {
     // init_logger();
-    log_set_level(LOG_TRACE);
-    struct mg_mgr mgr;
+    log_set_level(LOG_INFO);
+
     EAppErrCode errCode;
     serverConfig_t config;
+    Server server;
 
     errCode = parseConfig("./server_config.ini", &config);
-    if (errCode == ERR_OK) {
-        startServer(&mgr, &config);
+
+    if (errCode == ERR_OK)
+    {
+        server_init(&server, &config);
+
+        server_register_handler(&server, handleStaticResource);
+        // server_register_handler(&server, handleFormSubmission);
+        server_register_handler(&server, handleNotFound);
+
+        server_start(&server);
+        server_stop(&server);
     }
-    // mg_mgr_free(&mgr);
 
     return 0;
 }
