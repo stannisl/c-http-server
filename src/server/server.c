@@ -1,6 +1,6 @@
 #include "../../include/server/server.h"
-#include "../../include/constants.h"
 #include "../../include/IO/input.h"
+#include "../../include/constants.h"
 
 void server_init(Server *srv, const serverConfig_t *config)
 {
@@ -30,9 +30,7 @@ static void event_handler(struct mg_connection *c, int ev, void *ev_data)
         {
             status = srv->handlers[i](c, hm);
             if (status != 0)
-            {
                 log_info("Processed by handler %zu: %d", i, status);
-            }
         }
         log_info("status at end is %d", status);
         if (status == 0)

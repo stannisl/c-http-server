@@ -24,7 +24,8 @@ int handleSubmitRating(struct mg_connection *conn, struct mg_http_message *messa
         double average = (rating1 + rating2 + rating3 + rating4) / 4.0;
 
         char html[4096];
-        snprintf(html, sizeof(html), read_file(SATISFACTION_RESULT_PAGE), average, (int)rating1, (int)rating2, (int)rating3, (int)rating4);
+        snprintf(html, sizeof(html), read_file(SATISFACTION_RESULT_PAGE), average, (int)rating1, (int)rating2,
+                 (int)rating3, (int)rating4);
 
         mg_http_reply(conn, HTTP_STATUS_CODE_OK, "Content-Type: text/html\r\n", "%s", html);
         http_code = HTTP_STATUS_CODE_OK;

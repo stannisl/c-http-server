@@ -25,35 +25,29 @@ DOXYGEN = doxygen
 
 all: $(TARGET)
 
-# Build main target
 $(TARGET): $(OBJS) | $(BIN_DIR)
 	$(CC) $(LDFLAGS) $^ -o $@
 
-# Compile objects with proper directory structure
 $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Create build directories
 $(BIN_DIR) $(OBJ_DIR):
 	@mkdir -p $@
 
-# Code formatting (including libs)
 format:
-	find src include libs -type f \( -name '*.c' -o -name '*.h' \) -exec $(CLANG_FORMAT) -i --style=Microsoft {} \;
+	@clang-format --style=Microsoft -i $$(find src include -name "*.c")
+	@clang-format --style=Microsoft -i $$(find src include -name "*.h")
 
-# Linting with directory structure support
 lint:
 	$(CPPLINT) --filter=-readability/casting,-build/include_subdir \
 	--root=. \
 	--extensions=c,h \
 	$(shell find src include libs -type f \( -name '*.c' -o -name '*.h' \))
 
-# Memory checking
 valgrind: $(TARGET)
 	$(VALGRIND) --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(TARGET)
 
-# Documentation with libs support
 docs:
 	$(DOXYGEN) Doxyfile
 
