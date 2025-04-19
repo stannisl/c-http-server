@@ -1,10 +1,5 @@
 #include "../../include/config/config.h"
 
-#include <stdlib.h>
-#include <string.h>
-
-#include "../../include/server/server.h"
-
 static int handler(void *user, const char *section, const char *name, const char *value)
 {
     serverConfig_t *config = (serverConfig_t *)user;

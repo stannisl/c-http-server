@@ -1,74 +1,136 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" class="theme-light">
     <head>
-        <meta charset="UTF8" />
-        <title>Оценка удовлетворенности</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Оценка опыта | Service</title>
         <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+        />
     </head>
     <body>
-        <form>
-            <h2>Проверка шкалы удовлетворенности</h2>
-            <div id="form-help" class="visually-hidden">
-                Шкала от 0 до 10, где 0 - полностью не удовлетворен(-а), а 10
-                полностью удовлетворен(-а)
-            </div>
-            <div class="question">
-                <label for="satisfaction1">
-                    <h3>Насколько вы удовлетворены?</h3>
-                </label>
-                <input
-                    type="range"
-                    id="sat-range1"
-                    name="sat-range1"
-                    min="0"
-                    max="10"
-                    value="5"
-                />
-            </div>
+        <main class="card">
+            <form action="/submit-ratings" method="post" class="rating-form">
+                <div class="form-header">
+                    <svg
+                        class="icon-logo"
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                    >
+                        <path
+                            d="M20 0a20 20 0 1 0 0 40 20 20 0 0 0 0-40zm5 28h-3v-8h3v8zm-6 0h-3V12h3v16z"
+                            fill="currentColor"
+                        />
+                    </svg>
+                    <h1 class="form-title">Ваш опыт взаимодействия</h1>
+                </div>
 
-            <div class="question">
-                <label for="satisfaction2">Насколько вы удовлетворены? </label>
-                <input
-                    type="range"
-                    id="sat-range2"
-                    name="sat-range2"
-                    min="0"
-                    max="10"
-                    value="5"
-                />
-            </div>
+                <div class="rating-group">
+                    <div class="rating-item">
+                        <div class="rating-header">
+                            <label class="rating-label">Качество сервиса</label>
+                            <output class="rating-value">5</output>
+                        </div>
+                        <input
+                            type="range"
+                            class="rating-slider"
+                            name="sat-range1"
+                            min="0"
+                            max="10"
+                            value="5"
+                            data-preview="true"
+                        />
+                    </div>
 
-            <div class="question">
-                <label for="satisfaction3">
-                    <h3>Насколько вы удовлетворены?</h3>
-                </label>
-                <input
-                    type="range"
-                    id="sat-range3"
-                    name="sat-range3"
-                    min="0"
-                    max="10"
-                    value="5"
-                />
-            </div>
+                    <div class="rating-item">
+                        <div class="rating-header">
+                            <label class="rating-label">Качество сервиса</label>
+                            <output class="rating-value">5</output>
+                        </div>
+                        <input
+                            type="range"
+                            class="rating-slider"
+                            name="sat-range2"
+                            min="0"
+                            max="10"
+                            value="5"
+                            data-preview="true"
+                        />
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-header">
+                            <label class="rating-label">Качество сервиса</label>
+                            <output class="rating-value">5</output>
+                        </div>
+                        <input
+                            type="range"
+                            class="rating-slider"
+                            name="sat-range3"
+                            min="0"
+                            max="10"
+                            value="5"
+                            data-preview="true"
+                        />
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-header">
+                            <label class="rating-label">Качество сервиса</label>
+                            <output class="rating-value">5</output>
+                        </div>
+                        <input
+                            type="range"
+                            class="rating-slider"
+                            name="sat-range4"
+                            min="0"
+                            max="10"
+                            value="5"
+                            data-preview="true"
+                        />
+                    </div>
+                </div>
 
-            <div class="question">
-                <label for="satisfaction4">
-                    <h3>Насколько вы удовлетворены?</h3>
-                </label>
-                <input
-                    type="range"
-                    id="sat-range4"
-                    name="sat-range4"
-                    min="0"
-                    max="10"
-                    value="5"
-                />
-            </div>
+                <button type="submit" class="submit-btn">
+                    <span>Отправить оценку</span>
+                    <svg
+                        class="icon-arrow"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59a.996.996 0 0 0 0-1.41l-6.58-6.6a.996.996 0 1 0-1.41 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"
+                        />
+                    </svg>
+                </button>
+            </form>
+        </main>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const updateRangeValue = (input) => {
+                    const valueElement = input
+                        .closest(".rating-item")
+                        .querySelector(".rating-value");
+                    valueElement.textContent = input.value;
+                };
+                document.querySelectorAll(".rating-slider").forEach((input) => {
+                    updateRangeValue(input);
+                    input.addEventListener("input", (e) => {
+                        updateRangeValue(e.target);
 
-            <div class="submit-section">
-                <button type="submit">Отправить результаты</button>
-            </div>
-        </form>
+                        const thumb = input.nextElementSibling;
+                        if (thumb) {
+                            thumb.style.transform = `scale(1.1)`;
+                            setTimeout(
+                                () => (thumb.style.transform = `scale(1)`),
+                                100,
+                            );
+                        }
+                    });
+                });
+            });
+        </script>
     </body>
 </html>

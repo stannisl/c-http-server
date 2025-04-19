@@ -3,6 +3,7 @@
 
 #define SATISFACTION_FORM_HTML "./view/templates/satisfaction_form.html"
 #define NOT_FOUND_PAGE "./view/templates/not_found_page.html"
+#define SATISFACTION_RESULT_PAGE "./view/templates/satisfaction_result.html"
 
 #define STYLES_CSS "./view/css/styles.css"
 

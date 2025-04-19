@@ -1,4 +1,6 @@
 #include "../../include/server/server.h"
+#include "../../include/constants.h"
+#include "../../include/IO/input.h"
 
 void server_init(Server *srv, const serverConfig_t *config)
 {
@@ -23,14 +25,18 @@ static void event_handler(struct mg_connection *c, int ev, void *ev_data)
     {
         struct mg_http_message *hm = (struct mg_http_message *)ev_data;
 
-        for (size_t i = 0; i < srv->handlers_count; i++)
+        int status = 0;
+        for (size_t i = 0; !status && i < srv->handlers_count; i++)
         {
-            int status = srv->handlers[i](c, hm);
+            status = srv->handlers[i](c, hm);
             if (status != 0)
             {
                 log_info("Processed by handler %zu: %d", i, status);
             }
         }
+        log_info("status at end is %d", status);
+        if (status == 0)
+            mg_http_reply(c, HTTP_STATUS_CODE_NOT_FOUND, CONTENT_TYPE_HTML, read_file(NOT_FOUND_PAGE));
     }
 }
 

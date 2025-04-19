@@ -5,7 +5,7 @@
 
 int main(void)
 {
-    // init_logger();
+    init_logger();
     log_set_level(LOG_INFO);
 
     EAppErrCode errCode;
@@ -20,8 +20,7 @@ int main(void)
 
         server_register_handler(&server, handleLoggingRequest);
         server_register_handler(&server, handleStaticResource);
-        // server_register_handler(&server, handleFormSubmission);
-        server_register_handler(&server, handleNotFound);
+        server_register_handler(&server, handleSubmitRating);
 
         server_start(&server);
         server_stop(&server);

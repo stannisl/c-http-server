@@ -5,8 +5,8 @@
 #include "../types.h"
 
 int handleStaticResource(struct mg_connection *conn, struct mg_http_message *message);
-int handleNotFound(struct mg_connection *conn, struct mg_http_message *message);
 int handleFormSubmission(struct mg_connection *conn, struct mg_http_message *message);
 int handleLoggingRequest(struct mg_connection *conn, struct mg_http_message *message);
+int handleSubmitRating(struct mg_connection *conn, struct mg_http_message *message);
 
 #endif // __INCLUDE_SERVER_HANDLERS_H_
