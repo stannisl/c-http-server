@@ -7,8 +7,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * @brief Тип колбека обработчика запросов. ВАЖНО читайте возвращаемое значение. 
+ * 
+ * @return Возвращает статус код, если является последним обработчиком в цепи. И 0 если
+ * же после него другие обработчики подхватят запрос.
+ */
 typedef int (*RequestHandler)(struct mg_connection *conn, struct mg_http_message *message);
 
+/**
+ * @brief Тип ошибок сервера.
+ */
 typedef enum ErrCode
 {
     ERR_OK = 0,
@@ -17,6 +26,9 @@ typedef enum ErrCode
     ERR_FILE_NOT_FOUND = 3
 } EAppErrCode;
 
+/**
+ * @brief Тип полей файла конфигурации
+ */
 typedef struct
 {
     int port;
@@ -25,6 +37,9 @@ typedef struct
     // char log_file[256];
 } serverConfig_t;
 
+/**
+ * @brief Тип внутренней конфигурации сервера
+ */
 typedef struct
 {
     struct mg_mgr mgr;        // Менеджер Mongoose

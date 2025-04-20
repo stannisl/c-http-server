@@ -1,5 +1,8 @@
 #include "../../include/config/config.h"
 
+/**
+ * @brief Типовая функция для обработки строк ini конфига
+ */
 static int handler(void *user, const char *section, const char *name, const char *value)
 {
     serverConfig_t *config = (serverConfig_t *)user;
@@ -18,6 +21,12 @@ static int handler(void *user, const char *section, const char *name, const char
     return 1;
 }
 
+/**
+ * @brief Функция для парсинга ini конфига
+ * @param filename Название файла конфига
+ * @param config Указатель на структуру внешнего конфига.
+ * @return 0, если успех. 3, если файл не найден.
+ */
 int parseConfig(const char *filename, serverConfig_t *config)
 {
     log_debug("Started parsing config %s.", filename);

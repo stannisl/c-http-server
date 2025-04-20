@@ -1,16 +1,17 @@
 #ifndef __INCLUDE_DIRECTORY_CONSTANTS_H__
 #define __INCLUDE_DIRECTORY_CONSTANTS_H__
 
+/* Относительные пути представлений */
 #define SATISFACTION_FORM_HTML "./view/templates/satisfaction_form.html"
 #define NOT_FOUND_PAGE "./view/templates/not_found_page.html"
 #define SATISFACTION_RESULT_PAGE "./view/templates/satisfaction_result.html"
-
 #define STYLES_CSS "./view/css/styles.css"
 
+/* Типы возвращаемого контента в ответе */
 #define CONTENT_TYPE_HTML "Content-Type: text/html; charset=utf-8\r\n"
 #define CONTENT_TYPE_CSS "Content-Type: text/css; charset=utf-8\r\n"
 
-/* HTTP_STATUS_CODES */
+/* Коды ответов HTTP запросов */
 #define HTTP_STATUS_CODE_OK 200
 #define HTTP_STATUS_CODE_CREATED 201
 #define HTTP_STATUS_CODE_NO_CONTENT 204

@@ -10,12 +10,10 @@ BUILD_DIR = build
 BIN_DIR = $(BUILD_DIR)/bin
 OBJ_DIR = $(BUILD_DIR)/obj
 
-# Source files (рекурсивный поиск .c файлов в src/ и libs/)
 SRCS = $(shell find $(SRC_DIR) $(LIB_DIR) -type f -name '*.c')
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 TARGET = $(BIN_DIR)/server
 
-# Tools
 CLANG_FORMAT = clang-format
 CPPLINT = cpplint
 VALGRIND = valgrind
@@ -50,6 +48,7 @@ valgrind: $(TARGET)
 
 docs:
 	$(DOXYGEN) Doxyfile
+	xdg-open docs/html/index.html
 
 clean:
 	rm -rf $(BUILD_DIR)

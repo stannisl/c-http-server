@@ -2,6 +2,11 @@
 #include "../../include/IO/input.h"
 #include "../../include/constants.h"
 
+/**
+ * @brief Инициализирует подключение в менеджере соединений и настраивает внутренюю конфигурацию данными из конфиг файла
+ * @param *srv Server Указатель на настройки внутреннего севрера
+ * @param *config serverConfig_t Указатель на конфигурацию сервера из конфиг файла.
+ */
 void server_init(Server *srv, const serverConfig_t *config)
 {
     mg_mgr_init(&srv->mgr);
@@ -11,12 +16,23 @@ void server_init(Server *srv, const serverConfig_t *config)
     srv->user_data = NULL;
 }
 
+/**
+ * @brief Добавляет обработчик в конец пула обработчиков.
+ * @param *srv Server Указатель на настройки внутреннего севрера
+ * @param handler RequestHandler указатель на функцию обработчика.
+ */
 void server_register_handler(Server *srv, RequestHandler handler)
 {
     srv->handlers = realloc(srv->handlers, (srv->handlers_count + 1) * sizeof(RequestHandler));
     srv->handlers[srv->handlers_count++] = handler;
 }
 
+/**
+ * @brief Главный обработчик событий сервера
+ * @param с Указатель на текущее соединение
+ * @param ev Код события.
+ * @param ev_data Данные события.
+ */
 static void event_handler(struct mg_connection *c, int ev, void *ev_data)
 {
     Server *srv = (Server *)c->fn_data;
@@ -34,10 +50,18 @@ static void event_handler(struct mg_connection *c, int ev, void *ev_data)
         }
         log_info("status at end is %d", status);
         if (status == 0)
-            mg_http_reply(c, HTTP_STATUS_CODE_NOT_FOUND, CONTENT_TYPE_HTML, read_file(NOT_FOUND_PAGE));
+        {
+            char *data = read_file(NOT_FOUND_PAGE);
+            mg_http_reply(c, HTTP_STATUS_CODE_NOT_FOUND, CONTENT_TYPE_HTML, data);
+            free(data);
+        }
     }
 }
 
+/**
+ * @brief Запуск сервера и прослушиванияна на указанном порту
+ * @param srv Указатель на настройки внутреннего сервера
+ */
 void server_start(Server *srv)
 {
     char url[256];
@@ -45,9 +69,7 @@ void server_start(Server *srv)
 
     struct mg_connection *conn = mg_http_listen(&srv->mgr, url, event_handler, srv);
     if (conn == NULL)
-    {
         log_error("Failed to start listener on %s", url);
-    }
     else
     {
         log_info("Server started at %s", url);
@@ -56,6 +78,10 @@ void server_start(Server *srv)
     }
 }
 
+/**
+ * @brief Остановка сервера и очистка ресурсов
+ * @param srv Указатель на настройки внутреннего сервера
+ */
 void server_stop(Server *srv)
 {
     mg_mgr_free(&srv->mgr);

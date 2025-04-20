@@ -1,6 +1,12 @@
-INPUT                  = src include
+INPUT                 = README.md src include
 RECURSIVE             = YES
 EXTRACT_ALL           = YES
 EXTRACT_STATIC        = YES
 GENERATE_LATEX        = NO
+GENERATE_HTML         = YES
+CALL_GRAPH            = YES
 USE_MDFILE_AS_MAINPAGE = README.md
+PROJECT_NAME          = "HTTP Server"
+OUTPUT_DIRECTORY      = docs
+CLASS_DIAGRAMS        = YES
+SUPPORT_README        = YES
