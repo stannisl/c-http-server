@@ -100,5 +100,5 @@ void server_stop(Server *srv)
     mg_mgr_free(&srv->mgr);
     free(srv->handlers);
 
-    log_info("Server stopped");
+    log_info("Сервер успешно остановлен.");
 }

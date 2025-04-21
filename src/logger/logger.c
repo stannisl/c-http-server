@@ -1,5 +1,4 @@
 #include "../../include/logger/logger.h"
-
 #include "../../include/server/server.h"
 
 /**
