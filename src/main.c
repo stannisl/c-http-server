@@ -6,7 +6,6 @@
 int main(void)
 {
     init_logger();
-    log_set_level(LOG_INFO);
 
     EAppErrCode errCode;
     serverConfig_t config;
