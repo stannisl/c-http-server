@@ -4,12 +4,14 @@
 #include "../libs/inih/ini.h"
 #include "../libs/logger/log.h"
 #include "../libs/mongoose/mongoose.h"
+#include <signal.h>
+#include <stdatomic.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 /**
- * @brief Тип колбека обработчика запросов. ВАЖНО читайте возвращаемое значение. 
- * 
+ * @brief Тип колбека обработчика запросов. ВАЖНО читайте возвращаемое значение.
+ *
  * @return Возвращает статус код, если является последним обработчиком в цепи. И 0 если
  * же после него другие обработчики подхватят запрос.
  */
@@ -47,6 +49,7 @@ typedef struct
     RequestHandler *handlers; // Динамический массив обработчиков
     size_t handlers_count;    // Количество обработчиков
     void *user_data;          // Пользовательские данные
+    // volatile sig_atomic_t running; // Обработчик сигнала
 } Server;
 
 #endif // __INCLUDE_TYPES_H__

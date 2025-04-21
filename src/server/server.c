@@ -1,6 +1,15 @@
 #include "../../include/server/server.h"
 #include "../../include/IO/input.h"
 #include "../../include/constants.h"
+#include <signal.h>
+
+static volatile sig_atomic_t running = 1;
+
+static void signal_handler(int signum)
+{
+    running = 0;
+    log_info("Получен сигнал %s, производим graceful shutdown...", signum == SIGINT ? "SIGINT" : "SIGTERM");
+}
 
 /**
  * @brief Инициализирует подключение в менеджере соединений и настраивает внутренюю конфигурацию данными из конфиг файла
@@ -46,14 +55,14 @@ static void event_handler(struct mg_connection *c, int ev, void *ev_data)
         {
             status = srv->handlers[i](c, hm);
             if (status != 0)
-                log_info("Processed by handler %zu: %d", i, status);
+                log_info("Запрос будет обработан обработчиком %zu: %d", i, status);
         }
-        log_info("status at end is %d", status);
         if (status == 0)
         {
             char *data = read_file(NOT_FOUND_PAGE);
             mg_http_reply(c, HTTP_STATUS_CODE_NOT_FOUND, CONTENT_TYPE_HTML, data);
             free(data);
+            log_info("Не найден подходящий обработчик 404.");
         }
     }
 }
@@ -68,12 +77,16 @@ void server_start(Server *srv)
     snprintf(url, sizeof(url), "http://localhost:%d", srv->config.port);
 
     struct mg_connection *conn = mg_http_listen(&srv->mgr, url, event_handler, srv);
+
+    signal(SIGINT, signal_handler);
+    signal(SIGTERM, signal_handler);
+
     if (conn == NULL)
-        log_error("Failed to start listener on %s", url);
+        log_error("Ошибка при старте прослушивания на %s", url);
     else
     {
-        log_info("Server started at %s", url);
-        for (;;)
+        log_info("Сервер запущен на %s", url);
+        for (; running;)
             mg_mgr_poll(&srv->mgr, 1000);
     }
 }
